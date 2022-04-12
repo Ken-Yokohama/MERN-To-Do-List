@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MERN-To-Do-List/static/css/main.eb4e24a1.css",
+    "main.js": "/MERN-To-Do-List/static/js/main.f8d6053a.js",
+    "index.html": "/MERN-To-Do-List/index.html",
+    "main.eb4e24a1.css.map": "/MERN-To-Do-List/static/css/main.eb4e24a1.css.map",
+    "main.f8d6053a.js.map": "/MERN-To-Do-List/static/js/main.f8d6053a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb4e24a1.css",
+    "static/js/main.f8d6053a.js"
+  ]
+}
