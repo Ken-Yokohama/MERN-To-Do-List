@@ -26,3 +26,21 @@ This To-Do List is a Full-Stack Web Application created using React in the Front
 | Redux    | State Management   |
 | Axios    | Api HTTP Protocols  |
 | Npm GH-Pages | Web Hosting |
+### How to run locally
+
+- Running Express Server
+```
+git clone https://github.com/Ken-Yokohama/MERN-To-Do-List.git
+
+cd Server
+nodemon index.js
+```
+
+- Running React Front-End
+```
+git clone https://github.com/Ken-Yokohama/MERN-To-Do-List.git
+
+cd Client
+npm start
+```
+Note: You'll have to create your own MongoDb Atlas Project and then input your URI in a .env file
