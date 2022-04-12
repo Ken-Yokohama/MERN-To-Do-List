@@ -65,6 +65,40 @@ app.delete("/deleteTask/:taskId", (req, res) => {
     );
 });
 
+app.post("/completeTask", (req, res) => {
+    CompletedTaskModel.create(req.body).then((docs) => {
+        ToDosModel.deleteOne(
+            {
+                _id: req.body._id,
+            },
+            (err) => {
+                if (err) {
+                    console.log(`Error: ` + err);
+                } else {
+                    res.json("Successfully Transferred Data");
+                }
+            }
+        );
+    });
+});
+
+app.post("/uncompleteTask", (req, res) => {
+    ToDosModel.create(req.body).then((docs) => {
+        CompletedTaskModel.deleteOne(
+            {
+                _id: req.body._id,
+            },
+            (err) => {
+                if (err) {
+                    console.log(`Error: ` + err);
+                } else {
+                    res.json("Successfully Transferred Data");
+                }
+            }
+        );
+    });
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
