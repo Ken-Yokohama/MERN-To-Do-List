@@ -22,6 +22,13 @@ app.get("/getToDos", (req, res) => {
     });
 });
 
+app.post("/addToDos", (req, res) => {
+    const toDoItem = req.body;
+    ToDosModel.create(toDoItem).then((docs) => {
+        res.json("Succesfully Added Item");
+    });
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
