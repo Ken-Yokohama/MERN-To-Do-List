@@ -33,7 +33,7 @@ const UnfinishedItem = () => {
                         >
                             <CancelIcon />
                         </IconButton>
-                        <IconButton color="primary">
+                        <IconButton color="success">
                             <CheckCircleOutlineIcon />
                         </IconButton>
                     </Box>

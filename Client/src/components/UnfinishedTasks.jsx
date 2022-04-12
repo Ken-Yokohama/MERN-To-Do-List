@@ -61,6 +61,12 @@ const UnfinishedTasks = () => {
                     <UnfinishedItem />
                     <UnfinishedItem />
                     <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
                 </List>
             </Collapse>
         </List>

@@ -8,6 +8,7 @@ const ListContainer = () => {
             elevation={6}
             sx={{
                 height: "70vh",
+                overflowY: "scroll",
                 width: "60vw",
                 maxWidth: "500px",
                 "@media(max-width: 500px)": {

@@ -36,9 +36,18 @@ const CompletedTasks = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {/* <UnfinishedItem />
                     <UnfinishedItem />
-                    <UnfinishedItem /> */}
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
                     {/* Place Items Here */}
                 </List>
             </Collapse>
