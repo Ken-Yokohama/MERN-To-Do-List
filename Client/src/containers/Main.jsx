@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Home, Loading } from "../pages";
 
 const Main = () => {
-    return <div>Main</div>;
+    const [backendLoaded, setBackendLoaded] = useState(false);
+
+    useEffect(() => {
+        const getToDos = async () => {
+            const unfinishedTasks = await axios.get(
+                "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
+            );
+            setBackendLoaded(true);
+            console.log(unfinishedTasks.data);
+        };
+        getToDos();
+    }, []);
+    return <div>{backendLoaded ? <Home /> : <Loading />}</div>;
 };
 
 export default Main;
