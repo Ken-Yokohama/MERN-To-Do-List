@@ -10,9 +10,21 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import axios from "axios";
 
-const UnfinishedItem = ({ taskObj }) => {
+const UnfinishedItem = ({ taskObj, fetchToDos }) => {
     const [toggleEdit, setToggleEdit] = useState(false);
+
+    const [editedTask, setEditedTask] = useState("");
+
+    const updateTask = async () => {
+        await axios.put(
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/editTask",
+            { _id: taskObj?._id, task: editedTask }
+        );
+        fetchToDos();
+        setToggleEdit(false);
+    };
 
     return (
         <ListItemButton
@@ -24,7 +36,12 @@ const UnfinishedItem = ({ taskObj }) => {
                 </ListItemIcon>
                 {toggleEdit ? (
                     <Box>
-                        <Input placeholder={taskObj?.task} />
+                        <Input
+                            placeholder={taskObj?.task}
+                            onChange={(e) => {
+                                setEditedTask(e.target.value);
+                            }}
+                        />
                         <IconButton
                             color="error"
                             onClick={() => {
@@ -33,7 +50,7 @@ const UnfinishedItem = ({ taskObj }) => {
                         >
                             <CancelIcon />
                         </IconButton>
-                        <IconButton color="success">
+                        <IconButton color="success" onClick={updateTask}>
                             <CheckCircleOutlineIcon />
                         </IconButton>
                     </Box>

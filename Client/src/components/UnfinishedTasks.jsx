@@ -111,7 +111,11 @@ const UnfinishedTasks = () => {
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {unfinishedTasks.map((taskObj, index) => (
-                        <UnfinishedItem key={index} taskObj={taskObj} />
+                        <UnfinishedItem
+                            key={index}
+                            taskObj={taskObj}
+                            fetchToDos={fetchToDos}
+                        />
                     ))}
                 </List>
             </Collapse>
