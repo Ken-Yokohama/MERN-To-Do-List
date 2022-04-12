@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
-import ListSubheader from "@mui/material/ListSubheader";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -8,9 +7,13 @@ import ListItemText from "@mui/material/ListItemText";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-import UnfinishedItem from "./UnfinishedItem";
+import CompletedItem from "./CompletedItem";
 
-const CompletedTasks = () => {
+const CompletedTasks = ({
+    completedTasks,
+    fetchCompletedTasks,
+    fetchToDos,
+}) => {
     const [open, setOpen] = useState(true);
 
     const handleClick = () => {
@@ -36,19 +39,14 @@ const CompletedTasks = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {/* <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem /> */}
-                    {/* Place Items Here */}
+                    {completedTasks.map((taskObj, index) => (
+                        <CompletedItem
+                            key={index}
+                            taskObj={taskObj}
+                            fetchCompletedTasks={fetchCompletedTasks}
+                            fetchToDos={fetchToDos}
+                        />
+                    ))}
                 </List>
             </Collapse>
         </List>

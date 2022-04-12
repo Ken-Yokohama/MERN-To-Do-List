@@ -19,7 +19,11 @@ import { toggleDarkMode } from "../features/darkModeSlice";
 import axios from "axios";
 import { Box } from "@mui/system";
 
-const UnfinishedTasks = () => {
+const UnfinishedTasks = ({
+    fetchToDos,
+    unfinishedTasks,
+    fetchCompletedTasks,
+}) => {
     const [open, setOpen] = useState(true);
 
     const handleClick = () => {
@@ -27,19 +31,6 @@ const UnfinishedTasks = () => {
     };
 
     const dispatch = useDispatch();
-
-    const [unfinishedTasks, setUnfinishedTasks] = useState([]);
-
-    const fetchToDos = async () => {
-        const toDos = await axios.get(
-            "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
-        );
-        setUnfinishedTasks(toDos.data);
-    };
-
-    useEffect(() => {
-        fetchToDos();
-    }, []);
 
     const [newTask, setNewTask] = useState("");
 
@@ -115,6 +106,7 @@ const UnfinishedTasks = () => {
                             key={index}
                             taskObj={taskObj}
                             fetchToDos={fetchToDos}
+                            fetchCompletedTasks={fetchCompletedTasks}
                         />
                     ))}
                 </List>

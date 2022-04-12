@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import axios from "axios";
 
-const UnfinishedItem = ({ taskObj, fetchToDos, fetchCompletedTasks }) => {
+const CompletedItem = ({ taskObj, fetchCompletedTasks, fetchToDos }) => {
     const [toggleEdit, setToggleEdit] = useState(false);
 
     const [editedTask, setEditedTask] = useState("");
@@ -22,10 +22,10 @@ const UnfinishedItem = ({ taskObj, fetchToDos, fetchCompletedTasks }) => {
     const updateTask = async () => {
         setDisableTaskOptions(true);
         await axios.put(
-            "https://ken-yokohama-mern-to-do-list.herokuapp.com/editTask",
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/editCompletedTask",
             { _id: taskObj?._id, task: editedTask }
         );
-        fetchToDos();
+        fetchCompletedTasks();
         setDisableTaskOptions(false);
         setToggleEdit(false);
     };
@@ -33,21 +33,21 @@ const UnfinishedItem = ({ taskObj, fetchToDos, fetchCompletedTasks }) => {
     const deleteTask = async () => {
         setDisableTaskOptions(true);
         await axios.delete(
-            "https://ken-yokohama-mern-to-do-list.herokuapp.com/deleteTask/" +
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/deleteCompletedTask/" +
                 taskObj?._id
         );
-        fetchToDos();
+        fetchCompletedTasks();
         setDisableTaskOptions(false);
     };
 
-    const completeTask = async () => {
+    const uncompleteTask = async () => {
         setDisableTaskOptions(true);
         await axios.post(
-            "https://ken-yokohama-mern-to-do-list.herokuapp.com/completeTask",
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/uncompleteTask",
             taskObj
         );
-        fetchToDos();
         fetchCompletedTasks();
+        fetchToDos();
         setDisableTaskOptions(false);
     };
 
@@ -58,7 +58,7 @@ const UnfinishedItem = ({ taskObj, fetchToDos, fetchCompletedTasks }) => {
         >
             <Box sx={{ display: "flex" }}>
                 <ListItemIcon>
-                    <Checkbox onClick={completeTask} />
+                    <Checkbox onClick={uncompleteTask} defaultChecked />
                 </ListItemIcon>
                 {toggleEdit ? (
                     <Box>
@@ -101,4 +101,4 @@ const UnfinishedItem = ({ taskObj, fetchToDos, fetchCompletedTasks }) => {
     );
 };
 
-export default UnfinishedItem;
+export default CompletedItem;
