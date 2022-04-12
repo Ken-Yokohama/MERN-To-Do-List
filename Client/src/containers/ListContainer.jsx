@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
+import { CompletedTasks, UnfinishedTasks } from "../components";
 
 const ListContainer = () => {
     return (
@@ -15,7 +16,8 @@ const ListContainer = () => {
                 },
             }}
         >
-            ListContainer
+            <UnfinishedTasks />
+            <CompletedTasks />
         </Paper>
     );
 };
