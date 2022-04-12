@@ -24,7 +24,7 @@ const UnfinishedItem = () => {
                 </ListItemIcon>
                 {toggleEdit ? (
                     <Box>
-                        <Input placeholder="Value" sx={{ flex: "1" }} />
+                        <Input placeholder="Value" />
                         <IconButton
                             color="error"
                             onClick={() => {

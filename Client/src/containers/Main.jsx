@@ -9,11 +9,10 @@ const Main = () => {
 
     useEffect(() => {
         const getToDos = async () => {
-            const unfinishedTasks = await axios.get(
+            const pingBackend = await axios.get(
                 "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
             );
             setBackendLoaded(true);
-            console.log(unfinishedTasks.data);
         };
         getToDos();
     }, []);

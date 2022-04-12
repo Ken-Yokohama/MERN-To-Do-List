@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -9,10 +9,15 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import UnfinishedItem from "./UnfinishedItem";
+import Input from "@mui/material/Input";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import Switch from "@mui/material/Switch";
 import { useDispatch } from "react-redux";
+import AddIcon from "@mui/icons-material/Add";
 import { toggleDarkMode } from "../features/darkModeSlice";
+import axios from "axios";
+import { Box } from "@mui/system";
 
 const UnfinishedTasks = () => {
     const [open, setOpen] = useState(true);
@@ -22,6 +27,19 @@ const UnfinishedTasks = () => {
     };
 
     const dispatch = useDispatch();
+
+    const [unfinishedTasks, setUnfinishedTasks] = useState([]);
+
+    useEffect(() => {
+        const fetchToDos = async () => {
+            const toDos = await axios.get(
+                "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
+            );
+            setUnfinishedTasks(toDos.data);
+            console.log(toDos.data);
+        };
+        fetchToDos();
+    }, []);
 
     return (
         <List
@@ -56,6 +74,13 @@ const UnfinishedTasks = () => {
                 </ListSubheader>
             }
         >
+            <Box sx={{ display: "flex", p: "1rem" }}>
+                <Input placeholder="New Task" fullWidth />
+                <IconButton color="success">
+                    <AddIcon />
+                </IconButton>
+            </Box>
+
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                     <ListAltIcon />
