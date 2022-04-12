@@ -133,6 +133,21 @@ app.get("/getCompletedTasks", (req, res) => {
     });
 });
 
+app.delete("/deleteCompletedTask/:taskId", (req, res) => {
+    CompletedTaskModel.deleteOne(
+        {
+            _id: req.params.taskId,
+        },
+        (err) => {
+            if (err) {
+                console.log(`Error: ` + err);
+            } else {
+                res.json("Successfully Deleted a Completed Task");
+            }
+        }
+    );
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
