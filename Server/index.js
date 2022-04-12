@@ -49,6 +49,22 @@ app.put("/editTask", (req, res) => {
     );
 });
 
+app.delete("/deleteTask/:taskId", (req, res) => {
+    const taskId = req.params.taskId;
+    ToDosModel.deleteOne(
+        {
+            _id: taskId,
+        },
+        (err) => {
+            if (err) {
+                console.log(`Error: ` + err);
+            } else {
+                res.json("Successfully Deleted Task");
+            }
+        }
+    );
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
