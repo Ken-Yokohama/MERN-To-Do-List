@@ -17,16 +17,21 @@ const UnfinishedItem = ({ taskObj, fetchToDos }) => {
 
     const [editedTask, setEditedTask] = useState("");
 
+    const [disableTaskOptions, setDisableTaskOptions] = useState(false);
+
     const updateTask = async () => {
+        setDisableTaskOptions(true);
         await axios.put(
             "https://ken-yokohama-mern-to-do-list.herokuapp.com/editTask",
             { _id: taskObj?._id, task: editedTask }
         );
         fetchToDos();
+        setDisableTaskOptions(false);
         setToggleEdit(false);
     };
 
     const deleteTask = async () => {
+        setDisableTaskOptions(true);
         await axios.delete(
             "https://ken-yokohama-mern-to-do-list.herokuapp.com/deleteTask/" +
                 taskObj?._id
@@ -36,6 +41,7 @@ const UnfinishedItem = ({ taskObj, fetchToDos }) => {
 
     return (
         <ListItemButton
+            disabled={disableTaskOptions}
             sx={{ pl: 4, display: "flex", justifyContent: "space-between" }}
         >
             <Box sx={{ display: "flex" }}>
