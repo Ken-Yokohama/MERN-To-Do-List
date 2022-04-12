@@ -61,7 +61,13 @@ const CompletedItem = ({ taskObj, fetchCompletedTasks, fetchToDos }) => {
                     <Checkbox onClick={uncompleteTask} defaultChecked />
                 </ListItemIcon>
                 {toggleEdit ? (
-                    <Box>
+                    <Box
+                        sx={{
+                            "@media(max-width: 500px)": {
+                                display: "flex",
+                            },
+                        }}
+                    >
                         <Input
                             placeholder={taskObj?.task}
                             onChange={(e) => {

@@ -33,7 +33,7 @@ const ListContainer = () => {
             sx={{
                 height: "70vh",
                 overflowY: "scroll",
-                width: "60vw",
+                width: "500px",
                 maxWidth: "500px",
                 "@media(max-width: 500px)": {
                     height: "100%",
