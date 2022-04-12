@@ -11,7 +11,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-const UnfinishedItem = () => {
+const UnfinishedItem = ({ taskObj }) => {
     const [toggleEdit, setToggleEdit] = useState(false);
 
     return (
@@ -24,7 +24,7 @@ const UnfinishedItem = () => {
                 </ListItemIcon>
                 {toggleEdit ? (
                     <Box>
-                        <Input placeholder="Value" />
+                        <Input placeholder={taskObj?.task} />
                         <IconButton
                             color="error"
                             onClick={() => {
@@ -44,7 +44,7 @@ const UnfinishedItem = () => {
                             setToggleEdit(true);
                         }}
                     >
-                        <ListItemText primary="lorem lorem lorem" />
+                        <ListItemText primary={taskObj?.task} />
                         <IconButton>
                             <EditIcon />
                         </IconButton>

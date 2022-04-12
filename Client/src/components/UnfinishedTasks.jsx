@@ -30,16 +30,29 @@ const UnfinishedTasks = () => {
 
     const [unfinishedTasks, setUnfinishedTasks] = useState([]);
 
+    const fetchToDos = async () => {
+        const toDos = await axios.get(
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
+        );
+        setUnfinishedTasks(toDos.data);
+    };
+
     useEffect(() => {
-        const fetchToDos = async () => {
-            const toDos = await axios.get(
-                "https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos"
-            );
-            setUnfinishedTasks(toDos.data);
-            console.log(toDos.data);
-        };
         fetchToDos();
     }, []);
+
+    const [newTask, setNewTask] = useState("");
+
+    const addNewTask = async () => {
+        await axios.post(
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/addToDos",
+            {
+                task: newTask,
+            }
+        );
+        setNewTask("");
+        fetchToDos();
+    };
 
     return (
         <List
@@ -75,8 +88,15 @@ const UnfinishedTasks = () => {
             }
         >
             <Box sx={{ display: "flex", p: "1rem" }}>
-                <Input placeholder="New Task" fullWidth />
-                <IconButton color="success">
+                <Input
+                    placeholder="New Task"
+                    fullWidth
+                    value={newTask}
+                    onChange={(e) => {
+                        setNewTask(e.target.value);
+                    }}
+                />
+                <IconButton color="success" onClick={addNewTask}>
                     <AddIcon />
                 </IconButton>
             </Box>
@@ -90,15 +110,9 @@ const UnfinishedTasks = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
-                    <UnfinishedItem />
+                    {unfinishedTasks.map((taskObj, index) => (
+                        <UnfinishedItem key={index} taskObj={taskObj} />
+                    ))}
                 </List>
             </Collapse>
         </List>
