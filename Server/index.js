@@ -8,6 +8,20 @@ app.use(cors());
 
 mongoose.connect(process.env.MONGODBURI);
 
+app.get("/getToDos", (req, res) => {
+    ToDosModel.find({}, (err, docs) => {
+        if (err) {
+            console.log(`Error: ` + err);
+        } else {
+            if (docs.length === 0) {
+                console.log("No Todos Found");
+            } else {
+                res.json(docs);
+            }
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
