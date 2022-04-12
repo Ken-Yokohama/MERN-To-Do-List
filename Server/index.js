@@ -118,6 +118,21 @@ app.put("/editCompletedTask", (req, res) => {
     );
 });
 
+app.get("/getCompletedTasks", (req, res) => {
+    CompletedTaskModel.find({}, (err, docs) => {
+        if (err) {
+            console.log(`Error: ` + err);
+        } else {
+            if (docs.length === 0) {
+                console.log("No Completed Tasks Found");
+                res.json(docs);
+            } else {
+                res.json(docs);
+            }
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("App listening on port 3001!");
 });
