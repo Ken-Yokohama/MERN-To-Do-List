@@ -17,6 +17,7 @@ app.get("/getToDos", (req, res) => {
         } else {
             if (docs.length === 0) {
                 console.log("No Todos Found");
+                res.json(docs);
             } else {
                 res.json(docs);
             }
@@ -97,6 +98,24 @@ app.post("/uncompleteTask", (req, res) => {
             }
         );
     });
+});
+
+app.put("/editCompletedTask", (req, res) => {
+    CompletedTaskModel.updateOne(
+        {
+            _id: req.body._id,
+        },
+        {
+            task: req.body.task,
+        },
+        (err) => {
+            if (err) {
+                console.log(`Error: ` + err);
+            } else {
+                res.json("Successfully Edited Completed Task");
+            }
+        }
+    );
 });
 
 app.listen(3001, () => {
