@@ -15,7 +15,7 @@ const Main = () => {
         };
         getToDos();
     }, []);
-    return <div>{backendLoaded ? <Home /> : <Loading />}</div>;
+    return <>{backendLoaded ? <Home /> : <Loading />}</>;
 };
 
 export default Main;
