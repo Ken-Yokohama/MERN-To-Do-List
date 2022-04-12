@@ -11,6 +11,8 @@ import Collapse from "@mui/material/Collapse";
 import UnfinishedItem from "./UnfinishedItem";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
+import { useDispatch } from "react-redux";
+import { toggleDarkMode } from "../features/darkModeSlice";
 
 const UnfinishedTasks = () => {
     const [open, setOpen] = useState(true);
@@ -18,6 +20,8 @@ const UnfinishedTasks = () => {
     const handleClick = () => {
         setOpen(!open);
     };
+
+    const dispatch = useDispatch();
 
     return (
         <List
@@ -45,6 +49,9 @@ const UnfinishedTasks = () => {
                         defaultChecked
                         color="warning"
                         sx={{ position: "absolute", right: "0px" }}
+                        onChange={() => {
+                            dispatch(toggleDarkMode());
+                        }}
                     />
                 </ListSubheader>
             }
