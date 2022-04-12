@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const ToDosModel = require("./models/ToDosSchema");
+const CompletedTaskModel = require("./models/CompletedTasksSchema");
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
