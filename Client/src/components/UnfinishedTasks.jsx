@@ -9,6 +9,8 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import UnfinishedItem from "./UnfinishedItem";
+import Typography from "@mui/material/Typography";
+import Switch from "@mui/material/Switch";
 
 const UnfinishedTasks = () => {
     const [open, setOpen] = useState(true);
@@ -18,40 +20,50 @@ const UnfinishedTasks = () => {
     };
 
     return (
-        <div>
-            <List
-                sx={{
-                    width: "100%",
-                    maxWidth: "100%",
-                    bgcolor: "background.paper",
-                }}
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                        Nested List Items
-                    </ListSubheader>
-                }
-            >
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <ListAltIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon></ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-
-                        <UnfinishedItem />
-                    </List>
-                </Collapse>
-            </List>
-        </div>
+        <List
+            sx={{
+                width: "100%",
+                maxWidth: "100%",
+                bgcolor: "background.paper",
+            }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader={
+                <ListSubheader
+                    component="div"
+                    id="nested-list-subheader"
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Typography variant="h2" component="h4">
+                        To Do List
+                    </Typography>
+                    <Switch
+                        defaultChecked
+                        color="warning"
+                        sx={{ position: "absolute", right: "0px" }}
+                    />
+                </ListSubheader>
+            }
+        >
+            <ListItemButton onClick={handleClick}>
+                <ListItemIcon>
+                    <ListAltIcon />
+                </ListItemIcon>
+                <ListItemText primary="Unfinished Tasks" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                    <UnfinishedItem />
+                </List>
+            </Collapse>
+        </List>
     );
 };
 

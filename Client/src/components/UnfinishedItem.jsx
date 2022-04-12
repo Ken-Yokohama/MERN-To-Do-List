@@ -25,12 +25,13 @@ const UnfinishedItem = () => {
                 {toggleEdit ? (
                     <Box>
                         <Input placeholder="Value" sx={{ flex: "1" }} />
-                        <IconButton color="error">
-                            <CancelIcon
-                                onClick={() => {
-                                    setToggleEdit(false);
-                                }}
-                            />
+                        <IconButton
+                            color="error"
+                            onClick={() => {
+                                setToggleEdit(false);
+                            }}
+                        >
+                            <CancelIcon />
                         </IconButton>
                         <IconButton color="primary">
                             <CheckCircleOutlineIcon />
