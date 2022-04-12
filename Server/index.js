@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
+const ToDosModel = require("./models/ToDosSchema");
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
@@ -25,8 +26,26 @@ app.get("/getToDos", (req, res) => {
 app.post("/addToDos", (req, res) => {
     const toDoItem = req.body;
     ToDosModel.create(toDoItem).then((docs) => {
-        res.json("Succesfully Added Item");
+        res.json("Successfully Added Item");
     });
+});
+
+app.put("/editTask", (req, res) => {
+    ToDosModel.updateOne(
+        {
+            _id: req.body._id,
+        },
+        {
+            task: req.body.task,
+        },
+        (err) => {
+            if (err) {
+                console.log(`Error: ` + err);
+            } else {
+                res.json("Successfully Updated Task");
+            }
+        }
+    );
 });
 
 app.listen(3001, () => {
