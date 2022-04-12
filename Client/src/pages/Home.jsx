@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import { ListContainer } from "../containers";
 
 const Home = () => {
     return (
@@ -11,7 +12,7 @@ const Home = () => {
                 justifyContent: "center",
             }}
         >
-            Home
+            <ListContainer />
         </Box>
     );
 };
