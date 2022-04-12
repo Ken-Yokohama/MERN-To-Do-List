@@ -26,6 +26,14 @@ const UnfinishedItem = ({ taskObj, fetchToDos }) => {
         setToggleEdit(false);
     };
 
+    const deleteTask = async () => {
+        await axios.delete(
+            "https://ken-yokohama-mern-to-do-list.herokuapp.com/deleteTask/" +
+                taskObj?._id
+        );
+        fetchToDos();
+    };
+
     return (
         <ListItemButton
             sx={{ pl: 4, display: "flex", justifyContent: "space-between" }}
@@ -68,7 +76,7 @@ const UnfinishedItem = ({ taskObj, fetchToDos }) => {
                     </Box>
                 )}
             </Box>
-            <IconButton color="error">
+            <IconButton color="error" onClick={deleteTask}>
                 <DeleteOutlineIcon />
             </IconButton>
         </ListItemButton>
