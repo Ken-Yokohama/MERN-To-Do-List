@@ -7,3 +7,22 @@ This To-Do List is a Full-Stack Web Application created using React in the Front
 ### Links:
 - [Live Preview of Front-End](https://ken-yokohama.github.io/MERN-To-Do-List/)
 - [Live Preview of Back-End](https://ken-yokohama-mern-to-do-list.herokuapp.com/getToDos)
+
+
+### Features:
+- Dark and Light Mode
+- Fully Responsive Mobile First Design
+- Collapsable Display for Tasks
+- Completed and Unfinished Tasks Organization
+
+### Technologies & Templates Used
+| Technologies | Usage                                      |
+| ----------------- | ------------------------------------------------ |
+| Material UI | CSS Components, Styles, Icons & Dark Theme       |
+| ExpressJs    | Rest Api     |
+| NodeJs    | Back End Environment     |
+| Mongoose    | ODM for MongoDb     |
+| MongoDb    | Database     |
+| Redux    | State Management   |
+| Axios    | Api HTTP Protocols  |
+| Npm GH-Pages | Web Hosting |
