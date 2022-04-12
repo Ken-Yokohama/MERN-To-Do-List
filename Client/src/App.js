@@ -1,6 +1,15 @@
 import React from "react";
 import { Main } from "./containers";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import darkModeReducer from "./features/darkModeSlice";
+
+const store = configureStore({
+    reducer: {
+        darkMode: darkModeReducer,
+    },
+});
 
 function App() {
     const theme = createTheme({
@@ -17,9 +26,11 @@ function App() {
 
     return (
         <React.StrictMode>
-            <ThemeProvider theme={theme}>
-                <Main />
-            </ThemeProvider>
+            <Provider store={store}>
+                <ThemeProvider theme={theme}>
+                    <Main />
+                </ThemeProvider>
+            </Provider>
         </React.StrictMode>
     );
 }
